@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        *{
+            margin: auto;
+            padding: 0;
+        }
+        .fundo{
+            background-image: linear-gradient(45deg, black, blueviolet) ;
+            height: 100vh;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .calculadora{
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            top: 50%;
+            left:50%;
+            transform: translate(-50%, -50%);
+            border-radius: 15px;
+            padding: 15px;
+            
+        }
+        button {
+            width: 50px;
+            padding: 15px;
+            font-size: 25px;
+            cursor: pointer;
+            background-color: black;
+            margin: 3px;
+            border: none;
+            color: #fff;
+
+        }
+        button:hover {
+            background-color: #5a189a;
+        }
+        #resultado{
+            background-color: #fff;
+            width: 207px;
+            height: 30px;
+            margin: 5px;
+            font-size: 25px;
+            color: black;
+            text-align: right;
+            padding: 5px;
+
+
+        }
+    </style>
+</head>
+<body>
+    <div class="fundo">
+        <div class="calculadora">
+            <h1>Calculadora</h1>
+            <p id="resultado"></p>
+            <table>
+                <tr>
+                    <td><button onclick="limpar()">C</button></td>
+                    <td><button onclick="apagar()"><</button></td>
+                    <td><button onclick="inserir('/')">/</button></td>
+                    <td><button onclick="inserir('*')">x</button></td>
+                </tr>
+                <tr>
+                    <td><button onclick="inserir('7')">7</button></td>
+                    <td><button onclick="inserir('8')">8</button></td>
+                    <td><button onclick="inserir('9')">9</button></td>
+                    <td><button onclick="inserir('-')">-</button></td>
+                </tr>
+                <tr>
+                    <td><button onclick="inserir('4')">4</button></td>
+                    <td><button onclick="inserir('5')">5</button></td>
+                    <td><button onclick="inserir('6')">6</button></td>
+                    <td><button onclick="inserir('+')">+</button></td>
+                </tr>
+                <tr>
+                    <td><button onclick="inserir('1')">1</button></td>
+                    <td><button onclick="inserir('2')">2</button></td>
+                    <td><button onclick="inserir('3')">3</button></td>
+                    <td rowspan="2"><button style="height: 136px;" onclick="calcular()">=</button></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button style="width: 106px;" onclick="inserir('0')">0</button></td>
+                    <td><button onclick="inserir('.')">.</button></td>
+                </tr>
+            </table>
+
+
+        </div>
+
+    </div>
+    <script>
+        function inserir(num) {
+            document.getElementById('resultado').innerText += num;
+        }
+
+        function limpar() {
+            document.getElementById('resultado').innerText = '';
+        }
+
+        function apagar() {
+            let resultado = document.getElementById('resultado').innerText;
+            document.getElementById('resultado').innerText = resultado.substring(0, resultado.length - 1);
+        }
+
+        function calcular() {
+            let resultado = document.getElementById('resultado').innerText;
+            try {
+                document.getElementById('resultado').innerText = eval(resultado);
+            } catch (error) {
+                document.getElementById('resultado').innerText = 'Erro';
+            }
+        }
+    </script>
+</body>
+</html>
